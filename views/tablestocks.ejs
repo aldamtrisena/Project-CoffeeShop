@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/liststock.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="head">
+        <h1>Stock List</h1>
+    </div>
+    <div class="add-stock">
+        <p><a href="/product/add-stocks">Add New Stocks</a></p>
+    </div>
+    <div class="scroll-table">
+        <table class="table table-alt">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>quantity</th>
+                    <th>price</th>
+                    <th>Update Stock</th>
+                    <th>Delete Stock</th>
+                </tr>
+            </thead>
+            <% data.map(el => { %>
+            <tbody>
+                <tr> 
+                    <td><%= el.id %></td>
+                    <td><%= el.item %></td>
+                    <td><%= el.quantity %></td>
+                    <td>Rp.<%= el.price %></td>
+                    <td class="update"><a href="/product/update/<%= el.id %>">UPDATE</a></td>
+                    <td class="update-del"><a href="/product/delete/<%= el.id %>">DELETE</a></td>
+                         
+                   
+                   
+                </tr>
+            </tbody>
+                <% }) %>
+        </table>
+    </div>
+ 
+
+</body>
+</html>
