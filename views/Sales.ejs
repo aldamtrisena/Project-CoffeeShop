@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/liststock.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('partial/navigator-customer') %>
+    <div class="head">
+        <h1>Stock List</h1>
+    </div>
+    <div class="add-stock">
+        <% if(alert) { %>
+            <p><%= alert %> </p>
+        <% } %> 
+    </div>
+    <div class="scroll-table">
+        <table class="table table-alt">
+            <thead>
+                <tr>
+                    <th>product_name</th>
+                    <th>price</th>
+                </tr>
+            </thead>
+            <% data.map(el => { %>
+            <tbody>
+                <tr>
+                    <td><%= el.item %></td>
+                    <td><%= formatting(el.price) %></td>
+                </tr>
+            </tbody>
+            <% }) %>
+        </table>
+    </div>
+
+    <div class="headers">
+        <h1>Our Menu</h1>
+    </div>
+    <!-- akan diisin id dari USer yg memberli -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <form action="/transaksi/<%=id%>" method="post">
+                <label for="item">Item Name</label>
+                <div>
+                    <select name="item" id="item" class="custom-select">
+                        <% data.map(el => { %>
+                        <option value="<%=el.id%>"><%=el.item%></option>
+                        <% }) %>
+                    </select><br><br>
+                </div>
+                <div>
+                    <label for="qty">Quantity</label>
+                </div>
+                <div>
+                    <input type="number" name="qty">
+                </div>
+                <div>
+                    <button> Checkout </button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>

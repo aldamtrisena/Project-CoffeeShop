@@ -1,0 +1,16 @@
+[
+    {
+        "sku" : 1001,
+        "products_name" : "arabica coffe",
+        "quantity" : 20,
+        "price" : 18000
+    },
+
+    {
+        "sku" : 1002,
+        "products_name" : "torabica coffe",
+        "quantity" : 15,
+        "price" : 15000
+    }
+    
+]

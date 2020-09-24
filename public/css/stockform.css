@@ -1,0 +1,76 @@
+*{
+    font-family: 'Balsamiq Sans', cursive;
+}
+body {
+    background-image:url("../img/img3.jpg") ;
+    background-repeat: no-repeat;
+    background-size: 100% 920px;
+   
+    
+}
+
+.FormAdd {
+    width: auto;
+    position: relative;
+    margin: 14px 36px;
+}
+
+.error{
+    background-color: cornsilk;
+    color: red;
+    border-radius: 6px;
+    margin: 20px auto 0;
+    width: 320px;
+}
+
+.input{
+    width: 12px 55px;
+    margin: 4px auto;
+    -webkit-box-shadow: -2px 14px 14px 9px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px 14px 14px 9px rgba(0,0,0,0.75);
+    box-shadow: -2px 14px 14px 9px rgba(0,0,0,0.75);
+    
+}
+
+.container {
+    background: rgb(34,193,195,0.7);
+    border:  0.5px solid #42464b;
+    border-radius: 8px;
+    height: 600px;
+    margin: 20px auto 0;
+    width: 320px;
+    -webkit-box-shadow: -2px 14px 14px 9px rgba(0,0,0,0.75);
+-moz-box-shadow: -2px 14px 14px 9px rgba(0,0,0,0.75);
+box-shadow: -2px 14px 14px 9px rgba(0,0,0,0.75);
+
+}
+.container h1{
+   
+    text-align: center;
+}
+.input{
+    height: 30px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 240px;
+}
+.FormAdd label{
+    background-color: ivory;
+}
+input[type="submit"] {
+    -webkit-box-shadow: 1px 20px 23px 3px rgba(31,4,31,1);
+    -moz-box-shadow: 1px 20px 23px 3px rgba(31,4,31,1);
+    box-shadow: 1px 20px 23px 3px rgba(31,4,31,1);
+  width: 232px;
+  height: 32px;
+  margin: 6px auto;
+  
+}
+input[type="password"], input[type="text"], input[type="email"] {
+    box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+    outline: 0;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    
+  }

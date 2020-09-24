@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/liststock.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('partial/navigator-customer') %>
+    <div class="head">
+        <h1>TOTAL PAYMENT</h1>
+    </div>
+    <!-- akan diisin id dari USer yg memberli -->
+    <form action="/transaksi/pay/<%=id%>/<%=total%>" method="post">
+        <input type="text" name="id" value="<%=data.id%>" id="" readonly>
+        <input type="text" name="qty" value="<%=data.quantity%>" id="" readonly>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-info">
+                        <th>product_name</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="table-info">
+                        <td><%= data.item %></td>
+                        <td><%= formatting(total) %></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <input type="submit" value="Submit">
+        </div>
+
+    </form>
+
+</body>
+
+</html>

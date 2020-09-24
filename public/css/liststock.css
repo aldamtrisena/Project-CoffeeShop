@@ -1,0 +1,97 @@
+* {
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.head {
+    background-color: cyan;
+    margin: 2px auto 0;
+    padding: 3px;
+    height: 54px;
+    width: 320px;
+    text-align: center;
+
+}
+
+.headers {
+    position: static;
+    top: 300px
+}
+
+.head h1 {
+    margin: 12px auto 0;
+}
+
+.scroll-table {
+    margin: 12px auto 0;
+    width: 630px;
+    height: 220px;
+    position: relative;
+    box-sizing: border-box;
+    top: 20px;
+}
+
+.table {
+    margin: 12px auto 0;
+    padding: 3px;
+}
+
+thead,
+tbody,
+th,
+tr,
+td {
+    padding: 13px;
+    border: 1px solid;
+    text-align: center;
+}
+
+thead,
+th {
+    background-color: darkgray;
+}
+
+.add-stock {
+    width: 230px;
+    height: 20px;
+    position: relative;
+    margin: 8px auto 0;
+    text-align: center;
+    padding: 3px;
+
+}
+
+.update a {
+
+    padding: 6px;
+    border-radius: 10%;
+    text-decoration: none;
+    background-color: blue;
+    color: black;
+}
+
+.update a:hover {
+
+    background-color: thistle;
+}
+
+.add-stock p {
+    padding: 6px;
+    position: static;
+
+}
+
+.add-stock p a {
+    background-color: red;
+    padding: 6px;
+    color: black;
+    border-radius: 6px;
+}
+
+.update-del a {
+
+    padding: 6px;
+    border-radius: 10%;
+    text-decoration: none;
+    background-color: red;
+    color: black;
+}
