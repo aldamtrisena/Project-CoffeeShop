@@ -1,0 +1,9 @@
+[
+    {
+        "username": "super_admin",
+        "email": "admin@tokokopi.id",
+        "password": "adminpassword",
+        "address": "Jakarta",
+        "role": "admin"
+    }
+]

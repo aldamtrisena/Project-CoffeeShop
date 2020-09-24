@@ -6,13 +6,13 @@ const routeSales = require("./transaksi")
 const TransaksiController = require("../controllers/transaksiProductUser")
 
 
-route.get("/", (req,res) => {
+route.get("/", (req, res) => {
     res.render("home")
 })
 
-route.use("/user", routeUSer) 
+route.use("/user", routeUSer)
 route.use("/product", routeProduct)
-route.use("/transaksi",routeSales)
-route.get("/pay/:id/:total",TransaksiController.checkoutPay)
+route.use("/transaksi", routeSales)
+route.get("/pay/:id/:total", TransaksiController.checkoutPay)
 
 module.exports = route

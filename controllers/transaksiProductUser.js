@@ -14,7 +14,11 @@ class TransaksiController {
                     data
                 })
             })
+            .catch(err => {
+                res.send(err)
+            })
     }
+
 
     static postSalesController(req, res) {
         let qty = req.body.qty
@@ -35,11 +39,15 @@ class TransaksiController {
             data,
             total
         })
+
+
     }
+
 
     static finist() {
 
     }
+
 }
 
 module.exports = TransaksiController
