@@ -23,7 +23,7 @@ class ProductController {
         let value = {
             item,
             quantity,
-             price
+            price
         }
         Product.create(value)
             .then(data =>{

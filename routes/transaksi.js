@@ -11,8 +11,8 @@ route.use(express.static("public"))
 //from index
 route.get("/", sessionCustomerChecker, TransaksiController.inputSales)
 route.post("/:id", sessionCustomerChecker, TransaksiController.postSalesController)
-route.get("/pay/:id/:total", TransaksiController.checkoutPay)
-route.post("/pay/:id/:total", TransaksiController.finist)
+route.get("/pay/:id/:total", sessionCustomerChecker, TransaksiController.checkoutPay)
+route.post("/pay/:id/:total", sessionCustomerChecker, TransaksiController.finish)
 
 
 module.exports = route

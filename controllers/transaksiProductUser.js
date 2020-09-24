@@ -4,11 +4,16 @@ const {
     TransaksiProductUser
 } = require("../models/index")
 const nodemailer = require("nodemailer")
+const formatting = require('../helpers/function.js')
 
 
 class TransaksiController {
 
     static inputSales(req, res) {
+        let alert = null
+        if(req.query.alert){
+            alert = req.query.alert
+        }
         let id = req.session.username
         // console.log(id)
         let newid = null
@@ -26,7 +31,9 @@ class TransaksiController {
                 // res.send(data)
                 res.render("Sales", {
                     data,
-                    id: newid
+                    id: newid,
+                    formatting,
+                    alert
                 })
             })
             .catch(err => {
@@ -41,18 +48,25 @@ class TransaksiController {
         console.log(userId)
         Product.findByPk(req.body.item)
             .then(data => {
-                // res.send(data)
-                let bigTotal = data.price * qty
-                let value = {
-                    id: data.id,
-                    item: data.item,
-                    quantity: qty,
-                    price: data.price
+                if(data.quantity < qty){
+                    let alert = `Stok tidak cukup!`
+                    res.redirect(`/transaksi?alert=${alert}`)
                 }
-                // data. = qty
-                // console.log(bigTotal)
-                let newdata = JSON.stringify(value)
-                res.redirect(`/transaksi/pay/${userId}/${bigTotal}?input=${newdata}`)
+                else{
+                    // res.send(data)
+                    let bigTotal = data.price * qty
+                    let value = {
+                        id: data.id,
+                        item: data.item,
+                        quantity: qty,
+                        price: data.price
+                    }
+                    // data. = qty
+                    // console.log(bigTotal)
+                    let newdata = JSON.stringify(value)
+                    res.redirect(`/transaksi/pay/${userId}/${bigTotal}?input=${newdata}`)
+
+                }
             })
     }
 
@@ -64,18 +78,18 @@ class TransaksiController {
         res.render("checkout", {
             data,
             total: totals,
-            id: userId
+            id: userId,
+            formatting
         })
 
     }
 
 
-    static finist(req, res) {
-        console.log(req.query)
+    static finish(req, res) {
+        // console.log(req.query)
         let userId = req.params.id
         let totals = req.params.total
-        // res.send(req.body)
-        // console(req.params)
+        
         let value = {
             ProductId: +req.body.id,
             UserId: +userId,
@@ -84,19 +98,30 @@ class TransaksiController {
 
         }
         // console.log(value)
+
+       
         TransaksiProductUser.create(value)
             .then(datas => {
                 console.log(datas)
-                // res.send(datas)
-                // // res.send(datas)
-                return User.findByPk(+userId, {
-                    include: [TransaksiProductUser, Product],
+                return Product.findByPk(+req.body.id, {
+                    include: [User]
                 })
             })
-            .then(all => {
-
-                // console.log(all)
-                // res.send(all)
+            .then(dataProduct => {
+                let obj = {
+                    quantity: dataProduct.quantity - +req.body.qty
+                }
+                return Product.update(obj, {
+                    where: {
+                        id: +req.body.id
+                    }
+                })
+            })
+            .then(() => {
+                return User.findByPk(+userId)                  
+            })
+            .then(dataUser => {
+                
                 let transporter = nodemailer.createTransport({
                     service: "gmail",
                     auth: {
@@ -106,10 +131,11 @@ class TransaksiController {
                 })
 
                 let mailOption = {
-                    from: "aldam3sena@gmail.com",
-                    to: all.email,
-                    subject: "testing send email 22",
-                    text: `Selamat Malam`
+                    from: "coffeshophjsodik@gmail.com",
+                    to: dataUser.email,
+                    subject: "Resi Pembelian ",
+                    text: `Halo, ${dataUser.username}! Pembelian anda sudah berhasil dengan total ${totals}.
+                    Akan segera dikirim ke alamat anda!`
                 }
 
                 transporter.sendMail(mailOption, (err, res) => {
@@ -119,16 +145,11 @@ class TransaksiController {
                         console.log(res)
                     }
                 })
-
-                res.send("BERHASIL")
-
+                res.render(`sukses-belanja`)
             })
             .catch(err => {
                 res.send(err)
             })
-
-
-        //nodemailler
 
     }
 

@@ -14,10 +14,14 @@
 </head>
 
 <body>
+    <%- include('partial/navigator-customer') %>
     <div class="head">
         <h1>Stock List</h1>
     </div>
     <div class="add-stock">
+        <% if(alert) { %>
+            <p><%= alert %> </p>
+        <% } %> 
     </div>
     <div class="scroll-table">
         <table class="table table-alt">
@@ -31,7 +35,7 @@
             <tbody>
                 <tr>
                     <td><%= el.item %></td>
-                    <td>Rp.<%= el.price %></td>
+                    <td><%= formatting(el.price) %></td>
                 </tr>
             </tbody>
             <% }) %>
