@@ -10,4 +10,5 @@ route.use(express.static("public"))
 route.get("/", sessionCustomerChecker, TransaksiController.inputSales)
 route.post("/:id",sessionCustomerChecker, TransaksiController.postSalesController)
 
+
 module.exports = route

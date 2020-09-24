@@ -1,19 +1,27 @@
-*{
+* {
     font-family: 'Balsamiq Sans', cursive;
 }
-.head{
+
+.head {
     background-color: cyan;
     margin: 2px auto 0;
     padding: 3px;
     height: 54px;
     width: 320px;
     text-align: center;
-    position: static;
+
 }
-.head h1{
+
+.headers {
+    position: static;
+    top: 300px
+}
+
+.head h1 {
     margin: 12px auto 0;
 }
-.scroll-table{
+
+.scroll-table {
     margin: 12px auto 0;
     width: 630px;
     height: 220px;
@@ -22,58 +30,68 @@
     top: 20px;
 }
 
-.table{
+.table {
     margin: 12px auto 0;
     padding: 3px;
 }
 
 thead,
-tbody,th,tr,td{
+tbody,
+th,
+tr,
+td {
     padding: 13px;
     border: 1px solid;
     text-align: center;
 }
-thead,th {
+
+thead,
+th {
     background-color: darkgray;
 }
-.add-stock{
+
+.add-stock {
     width: 230px;
     height: 20px;
-    position: relative; 
-    margin: 8px auto 0;   
+    position: relative;
+    margin: 8px auto 0;
     text-align: center;
     padding: 3px;
-    
+
 }
-.update a{
-   
+
+.update a {
+
     padding: 6px;
     border-radius: 10%;
     text-decoration: none;
-    background-color:blue;
+    background-color: blue;
     color: black;
 }
 
-.update a:hover{
-   
-    background-color:thistle;
+.update a:hover {
+
+    background-color: thistle;
 }
-.add-stock p{
+
+.add-stock p {
     padding: 6px;
-    position:static;
-    
+    position: static;
+
 }
-.add-stock p a{
-    background-color:red;
+
+.add-stock p a {
+    background-color: red;
     padding: 6px;
     color: black;
     border-radius: 6px;
 }
-.update-del a{
-   
+
+.update-del a {
+
     padding: 6px;
     border-radius: 10%;
     text-decoration: none;
-    background-color:red;
+    background-color: red;
     color: black;
 }
