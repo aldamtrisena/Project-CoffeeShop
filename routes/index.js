@@ -10,6 +10,6 @@ route.get("/", (req,res) => {
 
 route.use("/user", routeUSer) 
 route.use("/product", routeProduct)
-route.use("/transaksi",routeSales)
+route.use("/transaksi", routeSales)
 
 module.exports = route
