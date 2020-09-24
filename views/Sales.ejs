@@ -15,6 +15,30 @@
 
 <body>
     <div class="head">
+        <h1>Stock List</h1>
+    </div>
+    <div class="add-stock">
+    </div>
+    <div class="scroll-table">
+        <table class="table table-alt">
+            <thead>
+                <tr>
+                    <th>product_name</th>
+                    <th>price</th>
+                </tr>
+            </thead>
+            <% data.map(el => { %>
+            <tbody>
+                <tr>
+                    <td><%= el.item %></td>
+                    <td>Rp.<%= el.price %></td>
+                </tr>
+            </tbody>
+            <% }) %>
+        </table>
+    </div>
+
+    <div class="headers">
         <h1>Our Menu</h1>
     </div>
     <!-- akan diisin id dari USer yg memberli -->
@@ -33,7 +57,7 @@
                     <label for="qty">Quantity</label>
                 </div>
                 <div>
-                    <input type="number">
+                    <input type="number" name="qty">
                 </div>
                 <div>
                     <button> Checkout </button>
