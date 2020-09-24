@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const PORT = 3000
 const route = require("./routes")
+const session = require('express-session')
 
 //staticfile
 app.use(express.static("public"))
@@ -11,6 +12,18 @@ app.use(express.static("public"))
 app.set("view engine", "ejs")
 //body.pasrher
 app.use(express.urlencoded({extended : true}))
+
+app.use(session({
+    secret: 'toko kopi',
+    resave: false,
+    saveUninitialized: false,   
+    cookie: {
+        expires: 30000
+    }
+}))
+
+
+
 //indexhomepage
 app.use("/", route)
 

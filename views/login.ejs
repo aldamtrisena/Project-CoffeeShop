@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login: insert username and password</title>
+</head>
+<body>
+    <%- include('partial/navigator-form') %>
+    <h2>Login Page</h2>
+    <% if(errorLogin) { %>
+        <p style="color: red;"><%= "Username or password is wrong." %></p>
+    <% } %>
+    <form action="/user/login" method="post">
+        <label>Username:</label>
+        <div>
+            <input type="text" name="username">
+        </div>
+        <label>Password:</label>
+        <div>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</body>
+</html>

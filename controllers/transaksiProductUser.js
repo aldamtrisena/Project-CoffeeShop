@@ -2,15 +2,18 @@ const {Product , User} = require("../models/index")
 
 class TransaksiController {
 
-    static inputSales(req,res){
+    static inputSales(req, res){
         Product.findAll()
             .then(data => {
                 // res.send(data)
                 res.render("Sales", {data})
             })
+            .catch(err => {
+                res.send(err)
+            })
     }
 
-    static postSalesController(req,res){
+    static postSalesController(req, res){
         // res.send(req.body)
         let qty = req.body.quantity
 
@@ -19,10 +22,14 @@ class TransaksiController {
                 id: req.body.idProduck
             }
         })
-        .then(data =>{
-            res.render("checkout", {data, qty})
-            // res.send(data)
-        })
+            .then(data =>{
+                
+                res.render("checkout", {data, qty})
+                // res.send(data)
+            })
+            .catch(err => {
+                res.send(err)
+            })
     }
 }
 

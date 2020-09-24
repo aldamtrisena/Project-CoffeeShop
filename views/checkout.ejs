@@ -12,7 +12,7 @@
         <h1>Our Menu</h1>
     </div>
     <!-- akan diisin id dari USer yg memberli -->
-    <form action="/transaksi/:3" method="post">  
+    <form action="/transaksi/" method="post">  
     <div class="scroll-table">
         <table class="table table-alt">
             <thead>
@@ -25,19 +25,19 @@
                    
                 </tr>
             </thead>
-            <% data.map(el => { %>
             <tbody>
+                <% data.forEach((el, index) => { %>
                 <tr> 
                     <td><%= el.item %></td>
                     <td>Rp.<%= el.price %></td>
-                    <td></td>
+                    <td><%= qty[index] %></td>
                     
                          
                    
                    
                 </tr>
-            </tbody>
                 <% }) %>
+            </tbody>
         </table>
         <button> Checkout </button>
     </div>
