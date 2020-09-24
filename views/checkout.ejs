@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/liststock.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="head">
-        <h1>Our Menu</h1>
+        <h1>TOTAL PAYMENT</h1>
     </div>
     <!-- akan diisin id dari USer yg memberli -->
-    <form action="/transaksi/:3" method="post">  
-    <div class="scroll-table">
-        <table class="table table-alt">
-            <thead>
-                <tr>
-                    
-                    <th>product_name</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    
-                   
-                </tr>
-            </thead>
-            <% data.map(el => { %>
-            <tbody>
-                <tr> 
-                    <td><%= el.item %></td>
-                    <td>Rp.<%= el.price %></td>
-                    <td></td>
-                    
-                         
-                   
-                   
-                </tr>
-            </tbody>
+    <form action="/transaksi/:3" method="post">
+        <div class="scroll-table">
+            <table class="table table-alt">
+                <thead>
+                    <tr>
+                        <th>product_name</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <% data.map(el => { %>
+                <tbody>
+                    <tr>
+                        <td><%= el.item %></td>
+                        <td><%=total%></td>
+                    </tr>
+                </tbody>
                 <% }) %>
-        </table>
-        <button> Checkout </button>
-    </div>
-   
-</form>
+            </table>
+            <button> Checkout </button>
+        </div>
+
+    </form>
 
 </body>
+
 </html>

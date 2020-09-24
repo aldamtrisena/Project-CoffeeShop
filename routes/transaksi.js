@@ -8,4 +8,5 @@ route.use(express.static("public"))
 route.get("/", TransaksiController.inputSales)
 route.post("/:id",TransaksiController.postSalesController)
 
+
 module.exports = route
