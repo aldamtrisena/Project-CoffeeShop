@@ -18,7 +18,9 @@
         <h1>TOTAL PAYMENT</h1>
     </div>
     <!-- akan diisin id dari USer yg memberli -->
-    <form action="/transaksi/:3" method="post">
+    <form action="/transaksi//pay/<%=id%>/<%=total%>" method="post">
+        <input type="text" name="id" value="<%=data.id%>" id="" readonly>
+        <input type="text" name="qty" value="<%=data.quantity%>" id="" readonly>
         <div>
             <table class="table table-bordered">
                 <thead>
@@ -37,7 +39,7 @@
 
             </table>
 
-            <button> Pay </button>
+            <input type="submit" value="Submit">
         </div>
 
     </form>

@@ -1,66 +1,86 @@
-const {User, Product} = require("../models/index")
+const {
+    User,
+    Product
+} = require("../models/index")
 // const session = require('express-session')
 
 class UserController {
 
-    static addData(req,res){
+    static addData(req, res) {
         let error
-        if(req.query.mes){
+        if (req.query.mes) {
             error = JSON.parse(req.query.mes)
         }
 
-        res.render("addUser", {error})
+        res.render("addUser", {
+            error
+        })
     }
 
-    static addDataPost(req,res){
-        let  { username, email, password, password2, address } = req.body
+    static addDataPost(req, res) {
+        let {
+            username,
+            email,
+            password,
+            password2,
+            address
+        } = req.body
         let error = []
         // validasi tidak boleh kosong
-        if(!username || !email || !password || !password2 ){
-            error.push({mes : "field can't be empty"}) 
-            
+        if (!username || !email || !password || !password2) {
+            error.push({
+                mes: "field can't be empty"
+            })
+
         }
         //validasi pass
-        if(password !== password2){
-            error.push({mes : "Password does not macth!"})
+        if (password !== password2) {
+            error.push({
+                mes: "Password does not macth!"
+            })
         }
         //rubahinput email jadi huruf kecil semua
-        if(email){
-           email = email.toLowerCase()
+        if (email) {
+            email = email.toLowerCase()
         }
-        
-        if(password.length < 2){
-            error.push({mes : "password must be at least 6 character"})
-        } 
-        if(error.length > 0){
+
+        if (password.length < 2) {
+            error.push({
+                mes: "password must be at least 6 character"
+            })
+        }
+        if (error.length > 0) {
             res.redirect(`/user/add?mes=${JSON.stringify(error)}`)
         } else {
             //cek email sudah terigester?
             User.findOne({
-                where : {
-                    email : email
-                }
-            })
+                    where: {
+                        email: email
+                    }
+                })
                 .then(result => {
-                    if(result){
-                        error.push({mes:'Email already used !,\n please provide another email'})
+                    if (result) {
+                        error.push({
+                            mes: 'Email already used !,\n please provide another email'
+                        })
                         res.redirect(`/user/add?mes=${JSON.stringify(error)}`)
-                    } 
-                    else {
+                    } else {
                         let value = {
-                                    username,
-                                    email,
-                                    password,
-                                    address,
-                                    role: "customer"
-                                }
+                            username,
+                            email,
+                            password,
+                            address,
+                            role: "customer"
+                        }
                         return User.create(value)
                     }
                 })
                 .then(result => {
                     let data = []
                     data.push(result)
-                    res.render("success", {data})
+                    res.render("success", {
+                        data
+                    })
                 })
                 .catch(err => {
                     res.send(err)
@@ -70,14 +90,13 @@ class UserController {
 
     }
 
-    static loginForm(req, res){
-        if(req.query.err){
+    static loginForm(req, res) {
+        if (req.query.err) {
             res.render('login', {
                 errorLogin: true
             })
 
-        }
-        else{
+        } else {
             res.render('login', {
                 errorLogin: false
             })
@@ -85,33 +104,32 @@ class UserController {
         // res.render('login')
     }
 
-    static login(req, res){
+    static login(req, res) {
         User.findOne({
-            where:{
-                username: req.body.username,
-                password: req.body.password
-            }
-        })
+                where: {
+                    username: req.body.username,
+                    password: req.body.password
+                }
+            })
             .then(result => {
                 //redirect ke halaman user login
                 // untuk admin ke halaman admin login
-                if(result === null){
+                if (result === null) {
                     res.redirect('/user/login?err=true')
-                }
-                else if(result.role === 'admin'){
+                } else if (result.role === 'admin') {
                     // res.redirect() //ke halaman admin
                     // res.send(result)
                     req.session.isLoggedIn = true
                     req.session.username = result.username
                     req.session.role = result.role
                     res.redirect('/user/admin')
-                }
-                else{
+                } else {
                     // res.redirect() //ke user page
                     // res.send(result)
                     req.session.isLoggedIn = true
                     req.session.username = result.username
                     req.session.role = result.role
+                    // req.session.id = result.id
                     res.redirect('/user/customer')
                 }
             })
@@ -120,15 +138,15 @@ class UserController {
             })
     }
 
-    static logout(req, res){
+    static logout(req, res) {
         res.redirect('/')
     }
 
-    static adminPage(req, res){
+    static adminPage(req, res) {
         res.render('home-admin')
     }
 
-    static customerPage(req, res){
+    static customerPage(req, res) {
         res.render('home-customer')
     }
 }
