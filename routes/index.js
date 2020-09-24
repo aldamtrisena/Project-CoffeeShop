@@ -5,7 +5,7 @@ const routeSales = require("./transaksi")
 
 
 
-const TransaksiController = require("../controllers/transaksiProductUser")
+// const TransaksiController = require("../controllers/transaksiProductUser")
 
 
 route.get("/", (req, res) => {

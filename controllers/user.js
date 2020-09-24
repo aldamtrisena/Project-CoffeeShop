@@ -3,6 +3,8 @@ const {
     Product
 } = require("../models/index")
 // const session = require('express-session')
+const bcrypt = require('bcryptjs')
+
 
 class UserController {
 
@@ -65,6 +67,7 @@ class UserController {
                         })
                         res.redirect(`/user/add?mes=${JSON.stringify(error)}`)
                     } else {
+                        
                         let value = {
                             username,
                             email,
@@ -105,10 +108,11 @@ class UserController {
     }
 
     static login(req, res) {
+
         User.findOne({
                 where: {
-                    username: req.body.username,
-                    password: req.body.password
+                    username: req.body.username
+                    // password: req.body.password
                 }
             })
             .then(result => {
@@ -116,22 +120,29 @@ class UserController {
                 // untuk admin ke halaman admin login
                 if (result === null) {
                     res.redirect('/user/login?err=true')
-                } else if (result.role === 'admin') {
-                    // res.redirect() //ke halaman admin
-                    // res.send(result)
-                    req.session.isLoggedIn = true
-                    req.session.username = result.username
-                    req.session.role = result.role
-                    res.redirect('/user/admin')
-                } else {
-                    // res.redirect() //ke user page
-                    // res.send(result)
-                    req.session.isLoggedIn = true
-                    req.session.username = result.username
-                    req.session.role = result.role
-                    // req.session.id = result.id
-                    res.redirect('/user/customer')
+                    
+                } 
+                else{
+                    if(User.checkRole(result.role)){
+                        req.session.isLoggedIn = true
+                        req.session.username = result.username
+                        req.session.role = result.role
+                        res.redirect('/user/admin')
+
+                    }
+                    else{
+                        let temp = result.comparePassword(req.body.password)
+                        if(temp){
+                            req.session.isLoggedIn = true
+                            req.session.username = result.username
+                            req.session.role = result.role
+                            // req.session.id = result.id
+                            res.redirect('/user/customer')
+
+                        }
+                    }
                 }
+                
             })
             .catch(err => {
                 res.send(err)

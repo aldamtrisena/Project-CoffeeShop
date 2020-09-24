@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const PORT = 3000
 const route = require("./routes")
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 const session = require('express-session')
 
 //staticfile
